@@ -16,5 +16,5 @@ pipeline {
                 sh 'mvn clean package -DskipTests'
             }
         }
-
+    }
 }
