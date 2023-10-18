@@ -5,7 +5,7 @@ pipeline {
         stage('Git') {
             steps {
                 echo 'Getting Project from Git'
-                git branch: 'ouss', url: https://github.com/oussjalleli/SKI_Plateform
+                git branch: 'ouss', url: 'https://github.com/oussjalleli/SKI_Plateform'
             }
         }
 
