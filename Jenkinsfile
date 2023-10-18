@@ -11,9 +11,8 @@ pipeline {
         stage ('GIT') {
             steps {
                echo "Getting Project from Git"; 
-                git branch: 'oussama',
-                    url: 'https://github.com/oussjalleli/Ski-plateform',
-                    credentialsId: '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'
+                git branch: 'ouss',
+                    url: 'https://github.com/oussjalleli/SKI_Plateform'
             }
         }
        
