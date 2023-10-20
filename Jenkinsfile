@@ -18,8 +18,10 @@ pipeline {
        
         stage("Build") {
             steps {
+                sh "chmod +x ./mvnw"
+                sh "mvn clean package -Pprod"
                 sh "mvn --version"
-                sh "mvn clean package -DskipTests"
+                // sh "mvn clean package -DskipTests"
             }
         }
 /*
@@ -48,12 +50,13 @@ pipeline {
             }
         }
 
-/*
-        stage("Deploy Artifact to private registry") {
+
+        stage("Deploy Artifact to Nexus") {
             steps {
-                sh "..............."
+                sh "mvn deploy -Pprod"
             }
         }
+/*
 //
         stage("Deploy Dokcer Image to private registry") {
             steps {
