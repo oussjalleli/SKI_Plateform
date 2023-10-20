@@ -50,7 +50,7 @@ pipeline {
         stage("Deploy Artifact to Nexus") {
              steps {
                  script {
-                      sh "mvn deploy -DaltDeploymentRepository=nexus::default::http://your-nexus-server:8081/repository/maven-releases/"
+                      sh "mvn deploy -DaltDeploymentRepository=nexus::default::http://192.168.33.10:8081/repository/maven-releases/"
                  }
              }
         }
