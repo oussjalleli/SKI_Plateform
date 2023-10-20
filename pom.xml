@@ -55,7 +55,16 @@
             <url>http://192.168.33.10:8081/repository/maven-releases</url>
         </repository>
     </distributionManagement>
-
+    <profiles>
+        <!-- Prod profile -->
+        <profile>
+            <id>prod</id>
+            <properties>
+                <!-- Set the Spring profile to "prod" for the active Spring profile -->
+                <spring.profiles.active>prod</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
     <build>
         <plugins>
             <plugin>
