@@ -19,7 +19,9 @@ pipeline {
         stage("Build") {
             steps {
                 sh "mvn --version"
-                sh "mvn clean package -DskipTests"
+                sh "chmod +x ./mvnw"
+                sh "mvn clean package -Pprod"
+               // sh "mvn clean package -DskipTests"
             }
         }
 /*
@@ -50,7 +52,7 @@ pipeline {
         stage("Deploy Artifact to Nexus") {
              steps {
                  script {
-                      sh "mvn deploy -DaltDeploymentRepository=nexus::default::http://192.168.33.10:8081/repository/maven-releases/"
+                      sh "mvn deploy -Pprod"
                  }
              }
         }
