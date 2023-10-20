@@ -11,17 +11,15 @@ pipeline {
         stage ('GIT') {
             steps {
                echo "Getting Project from Git"; 
-                git branch: 'ouss',
-                    url: 'https://github.com/oussjalleli/SKI_Plateform'
+                git branch: "oussama",
+                    url: "https://github.com/oussjalleli/Ski-plateform.git";
             }
         }
        
         stage("Build") {
             steps {
                 sh "mvn --version"
-                sh "chmod +x ./mvnw"
-                sh "mvn clean package -Pprod"
-               // sh "mvn clean package -DskipTests"
+                sh "mvn clean package -DskipTests"
             }
         }
 /*
@@ -48,13 +46,6 @@ pipeline {
             steps {
                 sh "docker-compose up -d"
             }
-        }
-        stage("Deploy Artifact to Nexus") {
-             steps {
-                 script {
-                      sh "mvn deploy -Pprod"
-                 }
-             }
         }
 /*
         stage("Deploy Artifact to private registry") {
