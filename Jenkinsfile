@@ -7,6 +7,11 @@ pipeline {
 
     agent any
 
+    tools {
+        // Define a Docker tool with the name 'Docker' or use the correct name.
+        docker 'Docker'
+    }
+
     stages {
         stage ('GIT') {
             steps {
