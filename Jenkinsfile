@@ -47,6 +47,13 @@ pipeline {
                 sh "docker-compose up -d"
             }
         }
+        stage("Deploy Artifact to Nexus") {
+             steps {
+                 script {
+                      sh "mvn deploy -DaltDeploymentRepository=nexus::default::http://your-nexus-server:8081/repository/maven-releases/"
+                 }
+             }
+        }
 /*
         stage("Deploy Artifact to private registry") {
             steps {
