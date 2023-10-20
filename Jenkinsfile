@@ -12,7 +12,7 @@ pipeline {
             steps {
                echo "Getting Project from Git"; 
                 git branch: "ouss",
-                    url: "https://github.com/oussjalleli/SkI-Plateform.git";
+                    url: "https://github.com/oussjalleli/SKI-Plateform.git";
             }
         }
        
