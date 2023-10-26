@@ -59,8 +59,7 @@ pipeline {
                 sh "mvn deploy -Pprod"
             }
         }
-/*
-//
+
         stage("Deploy Dokcer Image to private registry") {
             steps {
                 script {
@@ -78,7 +77,7 @@ pipeline {
             }
         }
     }
-// deploymentRepo
+/* deploymentRepo
     post {
         always {
             cleanWs()
