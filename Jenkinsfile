@@ -63,17 +63,18 @@ pipeline {
         stage("Deploy Dokcer Image to private registry") {
             steps {
                 script {
-                            def dockerImage = 'ski'
-                            def dockerTag = 'latest'
-                            def nexusRegistryUrl = 'http://192.168.33.10:8081/repository/oussama/'
-                            def dockerUsername = 'admin'
-                            def dockerPassword = 'nexus'
+                    def dockerImage = 'ski'
+                    def dockerTag = 'latest'
+                    def nexusRegistryUrl = 'http://192.168.33.10:8081/repository/oussama/'
+                    def dockerUsername = 'admin'
+                    def dockerPassword = 'nexus'
 
-                            sh "docker build -t \$dockerImage:\$dockerTag ."
-                            sh "docker tag \$dockerImage:\$dockerTag \$nexusRegistryUrl/\$dockerImage:\$dockerTag"
-                            sh "docker login -u \$dockerUsername -p \$dockerPassword \$nexusRegistryUrl"
-                            sh "docker push \$nexusRegistryUrl/\$dockerImage:\$dockerTag"
-               }
+                    sh "docker build -t ${dockerImage}:${dockerTag} ."
+                    sh "docker tag ${dockerImage}:${dockerTag} ${nexusRegistryUrl}${dockerImage}:${dockerTag}"
+                    sh "docker login -u ${dockerUsername} -p ${dockerPassword} ${nexusRegistryUrl}"
+                    sh "docker push ${nexusRegistryUrl}${dockerImage}:${dockerTag}"
+                }
+
             }
         }
     }
