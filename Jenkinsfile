@@ -3,7 +3,7 @@ pipeline {
     environment {
         dockerimagename = "ski"
         dockerImage = ""
-        nexusRepositoryURL = "http://192.168.33.10:8081/repository/oussama/"
+        nexusRepositoryURL = "192.168.33.10:8081/repository/oussama/"
         nexusRepositoryName = "oussama"  // Replace with your Nexus repository name
         dockerImageVersion = "1.0"  // Replace with your desired image version
     }
@@ -65,7 +65,7 @@ pipeline {
                 script {
                     def dockerImage = 'ski'
                     def dockerTag = 'latest'
-                    def nexusRegistryUrl = 'http://192.168.33.10:8081/repository/oussama/'
+                    def nexusRegistryUrl = '192.168.33.10:8081/repository/oussama/'
                     def dockerUsername = 'admin'
                     def dockerPassword = 'nexus'
 
