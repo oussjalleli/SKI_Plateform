@@ -65,7 +65,7 @@ pipeline {
                 script {
                     def dockerImage = 'ski'
                     def dockerTag = 'latest'
-                    def nexusRegistryUrl = '192.168.33.10:8081/repository/oussama/'
+                    def nexusRegistryUrl = '172.17.0.2:8082/repository/oussama/'
                     def dockerUsername = 'admin'
                     def dockerPassword = 'nexus'
 
