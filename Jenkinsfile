@@ -71,7 +71,7 @@ pipeline {
 
                     sh "docker build -t ${dockerImage}:${dockerTag} ."
                     sh "docker tag ${dockerImage}:${dockerTag} ${nexusRegistryUrl}${dockerImage}:${dockerTag}"
-                    sh "docker login -u ${dockerUsername} -p ${dockerPassword} ${nexusRegistryUrl}"
+                    sh "echo ${dockerPassword} | docker login -u ${dockerUsername} --password-stdin ${nexusRegistryUrl}"
                     sh "docker push ${nexusRegistryUrl}${dockerImage}:${dockerTag}"
                 }
 
