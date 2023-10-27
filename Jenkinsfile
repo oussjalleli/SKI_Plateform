@@ -60,7 +60,7 @@ pipeline {
             }
         }
 
-        stage("Deploy Dokcer Image to private registry") {
+        stage("Deploy Docker Image to private registry") {
             steps {
                 script {
                     def dockerImage = 'ski'
@@ -78,21 +78,26 @@ pipeline {
             }
         }
 
-        stage("Run Docker Container from Nexus Registry") {
+        stage("Run Application from Private Docker Registry") {
             steps {
                 script {
-                    def dockerImage = 'ski'
-                    def dockerTag = 'latest'
-                    def nexusRegistryUrl = '172.17.0.2:8082/repository/oussama/'
-                    def dockerUsername = 'admin'
-                    def dockerPassword = 'nexus'
+                    def nexusRegistryUrl = "172.17.0.2:8082/repository/oussama/"
+                    def dockerImage = "ski"
+                    def dockerTag = "latest"
+                    def dockerUsername = "admin"
+                    def dockerPassword = "nexus"
+                    def containerName = "ski"
+
+                    // Log in to the Nexus Docker registry
+                    sh "docker login -u ${dockerUsername} -p ${dockerPassword} ${nexusRegistryUrl}"
 
                     // Pull the Docker image from the Nexus registry
-                    sh "docker login -u ${dockerUsername} -p ${dockerPassword} ${nexusRegistryUrl}"
                     sh "docker pull ${nexusRegistryUrl}${dockerImage}:${dockerTag}"
 
-                    // Run the Docker container
-                    sh "docker run -d --name ${dockerImage} -p 8080:8080 ${nexusRegistryUrl}${dockerImage}:${dockerTag}"
+                    // Update the existing container with the new image
+                    sh "docker stop ${containerName}"
+                    sh "docker rm ${containerName}"
+                    sh "docker run -d -p 8090:8090 --name ${containerName} ${nexusRegistryUrl}${dockerImage}:${dockerTag}"
                 }
             }
         }
