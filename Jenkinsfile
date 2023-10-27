@@ -77,6 +77,25 @@ pipeline {
 
             }
         }
+
+        stage("Run Docker Container from Nexus Registry") {
+            steps {
+                script {
+                    def dockerImage = 'ski'
+                    def dockerTag = 'latest'
+                    def nexusRegistryUrl = '172.17.0.2:8082/repository/oussama/'
+                    def dockerUsername = 'admin'
+                    def dockerPassword = 'nexus'
+
+                    // Pull the Docker image from the Nexus registry
+                    sh "docker login -u ${dockerUsername} -p ${dockerPassword} ${nexusRegistryUrl}"
+                    sh "docker pull ${nexusRegistryUrl}${dockerImage}:${dockerTag}"
+
+                    // Run the Docker container
+                    sh "docker run -d --name ${dockerImage} -p 8080:8080 ${nexusRegistryUrl}${dockerImage}:${dockerTag}"
+                }
+            }
+        }
     }
 }
 
