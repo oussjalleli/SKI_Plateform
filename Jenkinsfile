@@ -33,19 +33,20 @@ pipeline {
                 sh 'mvn test'
             }
         }
-/*
-        stage("Sonar") {
-            steps {
-                sh "mvn sonar:sonar"
-            }
-        }
-//
-        stage("SRC Analysis Testing") {
-            steps {
-                sh "mvn sonar:sonar"
-            }
-        }
-*/
+
+        stage('SonarCloud Analysis') {
+                    environment {
+                        SONAR_ORGANIZATION = 'SkiOussama'
+                        SONAR_PROJECT_KEY = 'skioussama_ski'
+                        SONAR_LOGIN = credentials('sonarcloud-token')
+                    }
+                    steps {
+                        script {
+                            sh "mvn verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=${SONAR_ORGANIZATION} -Dsonar.projectKey=${SONAR_PROJECT_KEY} -Dsonar.login=${SONAR_LOGIN}"
+                        }
+                    }
+                }
+
         stage("Build Docker image") {
             steps {
                 script {
