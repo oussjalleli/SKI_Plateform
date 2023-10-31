@@ -47,11 +47,7 @@ pipeline {
                 }
             }
         }
-        stage("Start app and db") {
-            steps {
-                sh "docker-compose up -d"
-            }
-        }
+
 
 
         stage("Deploy Artifact to Nexus") {
@@ -76,6 +72,11 @@ pipeline {
                 }
 
             }
+        }
+        stage("Start app and db") {
+                    steps {
+                        sh "docker-compose up -d"
+                    }
         }
 
 
