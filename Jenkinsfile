@@ -27,6 +27,12 @@ pipeline {
                 // sh "mvn clean package -DskipTests"
             }
         }
+        stage('Run JUnit and Mockito Tests') {
+            steps {
+                // Run JUnit and Mockito tests using Maven
+                sh 'mvn test'
+            }
+        }
 /*
         stage("Sonar") {
             steps {
