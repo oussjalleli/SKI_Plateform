@@ -75,9 +75,19 @@ pipeline {
         }
         stage("Start app and db") {
                     steps {
-                        sh "docker-compose up -d"
+                        script {
+                            def dockerImage = 'ski'
+                            def dockerTag = 'latest'
+                            def nexusRegistryUrl = '172.17.0.2:8082/repository/oussama/'
+                            def dockerUsername = 'admin'
+                            def dockerPassword = 'nexus'
+
+                            sh "echo ${dockerPassword} | docker login -u ${dockerUsername} --password-stdin ${nexusRegistryUrl}"
+                            sh "docker-compose pull" // Pull the Docker image from the private registry
+                            sh "docker-compose up -d"  // Start the application and database containers
+                        }
                     }
-        }
+                }
 
 
     }
