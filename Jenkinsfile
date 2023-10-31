@@ -36,7 +36,7 @@ pipeline {
 
         stage('SonarCloud Analysis') {
                     environment {
-                        SONAR_ORGANIZATION = 'SkiOussama'
+                        SONAR_ORGANIZATION = 'skioussama'
                         SONAR_PROJECT_KEY = 'skioussama_ski'
                         SONAR_LOGIN = credentials('sonarcloud-token')
                     }
