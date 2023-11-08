@@ -9,4 +9,4 @@ RUN chmod +x /usr/local/bin/startup-script.sh
 
 # Define the entry point to run the startup script
 ENTRYPOINT ["startup-script.sh"]
-
+EXPOSE 8090
