@@ -9,9 +9,11 @@ ARG GROUP_ID="tn.esprit.ds"
 ARG ARTIFACT_ID="SkiStationProject"
 ARG VERSION="1.0.0"
 ARG ARTIFACT_FILENAME="$ARTIFACT_ID-$VERSION.jar"
-
+# Define your Nexus repository credentials (username and password)
+ARG NEXUS_USERNAME="admin"
+ARG NEXUS_PASSWORD="nexus"
 # Fetch the artifact from the Nexus repository and save it as "ski.jar"
-RUN curl -o ski.jar "$REPO_URL/$GROUP_ID/$ARTIFACT_ID/$VERSION/$ARTIFACT_FILENAME"
+RUN curl -u "$NEXUS_USERNAME:$NEXUS_PASSWORD" -o ski.jar "$REPO_URL/$GROUP_ID/$ARTIFACT_ID/$VERSION/$ARTIFACT_FILENAME"
 
 # Define the entry point to run your Java application
 ENTRYPOINT ["java", "-jar", "ski.jar"]
