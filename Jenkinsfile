@@ -53,7 +53,7 @@ pipeline {
                     def dockerImageName = "ski"
                     def NEXUS_BASE_URL = "http://172.17.0.2:8081/repository"
                     def NEXUS_REPOSITORY = "maven-releases"
-                    def NEXUS_ARTIFACT_VERSION = "1.0"
+                    def NEXUS_ARTIFACT_VERSION = "0.0.1"
                     sh "docker build \
                         --build-arg NEXUS_BASE_URL=${NEXUS_BASE_URL} \
                         --build-arg NEXUS_REPOSITORY=${NEXUS_REPOSITORY} \
